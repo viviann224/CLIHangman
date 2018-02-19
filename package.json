@@ -1,0 +1,31 @@
+{
+  "name": "clihangman",
+  "version": "1.0.0",
+  "description": "Hangman CLI using javascrip and inquirer to create an interactive game on terminal/bash/ command line",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viviann224/CLIHangman.git"
+  },
+  "keywords": [
+    "Hangman",
+    "CLI",
+    "javascript",
+    "Node",
+    "js",
+    "Inquirer",
+    "npm"
+  ],
+  "author": "Vivian Tuong Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viviann224/CLIHangman/issues"
+  },
+  "homepage": "https://github.com/viviann224/CLIHangman#readme",
+  "dependencies": {
+    "inquirer": "^5.1.0"
+  }
+}
