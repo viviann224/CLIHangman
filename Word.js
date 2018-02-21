@@ -59,10 +59,10 @@ Word.prototype.checkLetter=function(myChar)
 //word
 Word.prototype.getUserArray=function()
 {
-
-	console.log("secret word passed to blank: "+this.secretWord[0]);
+	//console.log("secret word passed to blank: "+this.secretWord[]);
 	for(var x=0; x<this.secretWord.length; x++)
 	{
+
 		console.log(this.letters[x].isGuessed);
 		//creating the secret word into an array to compare to user's char guess
 		if(this.letters[x].isGuessed)
@@ -70,7 +70,9 @@ Word.prototype.getUserArray=function()
 			console.log("when true return: "+typeof(this.letters[x].returnGuess()));
 			this.userArray[x]=this.letters[x].returnGuess();
 			console.log(this.userArray[x]);
+		
 		}
+
 		
 		//this.letters.push(new Letter(this.secretWord[x]));
 	}
@@ -78,6 +80,11 @@ Word.prototype.getUserArray=function()
 	console.log(this.letters);
 	//console.log(this.userWord);
 	return this.userArray.join("");
+};
+
+Word.prototype.display=function()
+{
+	console.log("hello");
 };
 
 module.exports = Word;
