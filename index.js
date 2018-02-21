@@ -17,6 +17,7 @@ isSame:false,
 guessLeft:3,
 secret:"",
 myWord:null,
+changed:false,
 start:function()
 {
 	userGuessArray=[];
@@ -132,66 +133,32 @@ userInput:function()
     		console.log("GUESSES: "+Game.guessLeft)
     		//this.userGuessArray.push(userChar);
     		//console.log("USER'S GUESSES: "+this.userGuessArray())
-    		var isDone=true;
-    		for(var x=0; x<Game.myWord.secretWord.length&&!isDone;x++)
+    		Game.changed=true;
+    		console.log("before for loop");
+    		for(var x=0; x<Game.myWord.secretWord.length&&Game.changed;x++)
     		{
+    			console.log("inside for loop");
+    			Game.changed=true;
     			console.log("secretword: "+(Game.myWord.secretWord[x]));
     			console.log("user array: "+(Game.myWord.userArray[x]));
-    			if(!(Game.myWord.secretWord[x])==(Game.myWord.userArray[x]))
-    			{	isDone=false;}
-   
+    			if(Game.myWord.secretWord[x]!=Game.myWord.userArray[x])
+    			{	Game.changed=false;}
     		}
-
-    		if(Game.guessLeft>0 &&!isDone)
+    		console.log("changed?: "+Game.changed);
+    		if(Game.guessLeft>0 && !Game.changed)
     		{
     			//console.log("switched status: "+Game.myWord.switched);
     			Game.userInput();
     		}
+    		else if(Game.guessLeft==0)
+    		{
+    			console.log("You ran out of Guesses \nANSWER: "+Game.myWord.secretWord.join(""));
+    		}
+    		else if(Game.changed)
+    		{
+    			console.log("you finished congrats!");
+    		}
     	}
-
-    /*//assume user input is correct at first
-    	//go ahead and tolower the char as needed
-	      var userChar = (user.userLetter).toLowerCase();
-	      //go ahead and test the char if in the array
-	      //linear search to verify if char was guesses earlier
-	      //reset isSame to false
-	      isSame=false;
-	      for(var x=0; x<this.userGuessArray;x++)
-	      {
-	      	if(userChar ==this.userGuessArray[x])
-	      	{
-	      		isSame=true;
-	      	}
-	      }
-  		
-	      //if wrong and and a new char
-	      //go ahead and add it to the guessArray
-	      if(!isSame)
-	      {
-	      	this.userGuessArray.push(userChar);
-	      	this.myWord.letterCheck(userChar);
-	      }
-	      else
-	      {
-	      	console.log(this.userGuessArray);
-	      	console.log("You already gussed that! \nPlease try again!");
-	      	this.userInput();
-	      }*/
-	       // console.log("here");
-    	/*
-    	var isChar=false;
-    	//chars available to input a-z
-    	var letterCheck= /^[A-Za-z]+$/;
-    	isChar=user.userLetter.match(letterCheck);
-    	if(!isChar)
-    	{
-    		console.log("That was not a valid guess \nPlease try again!")
-	      	//That was not a valid response. try again
-	      	this.userInput();
-    	}
-    	var userChar = (user.userLetter).toLowerCase();
-    	checkUserBank(userChar);
-    	*/
     });
   },
 
@@ -204,48 +171,8 @@ checkGuess:function(userChar, secretWord, guessLeft)
 	}
 	return guessLeft;
 },
-/*    	var isChar=false;
-    	//chars available to input a-z
-    	var letterCheck= /^[A-Za-z]+$/;
-    	isChar=user.userLetter.match(letterCheck);
-    	//if the user chooses a char, isSame = true; else set isSame to false
-    	if(isChar)
-    	{	//isChar= true;
-			//go ahead and tolower the char as needed
-		      var userChar = (user.userLetter).toLowerCase();
-		      //go ahead and test the char if in the array
-		      //linear search to verify if char was guesses earlier
-		      //reset isSame to false
-		      isSame=false;
-		      for(var x=0; x<this.userGuessArray;x++)
-		      {
-		      	if(userChar ==this.userGuessArray[x])
-		      	{
-		      		isSame=true;
-		      	}
-		      }
-	  		
-		      //if wrong and and a new char
-		      //go ahead and add it to the guessArray
-		      if(!isSame)
-		      {
-		      	this.userGuessArray.push(userChar);
-		      }
-		      else
-		      {
-		      	console.log(this.userGuessArray);
-		      	console.log("You already gussed that! \nPlease try again!");
-		      	this.userInput();
-		      }
-    	}
-    	else
-    	{	isChar=false;
-			//prompt user already guessed variable
-	      	console.log("That was not a valid guess \nPlease try again!")
-	      	//you already guess go ahead and ask the question again
-	      	this.userInput();
-    	}
-    	*/
+
 }
+
 Game.start();
 
