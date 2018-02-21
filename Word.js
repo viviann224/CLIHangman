@@ -39,9 +39,9 @@ Word.prototype.createArray = function()
 		this.letters.push(new Letter(this.secretWord[x]));
 
 	}
-	console.log(this.secretWord);
-	console.log("blank userword: "+this.userWord);
-	console.log(this.letters);
+	//console.log(this.secretWord);
+	//console.log("blank userword: "+this.userWord);
+	//console.log(this.letters);
 }
 
 //checkLetter functions passes myChar
@@ -53,7 +53,7 @@ Word.prototype.checkLetter=function(myChar)
 	{
 		this.letters[x].checkGuess(myChar,this.secretWord[x])
 	}
-	console.log(this.letters);
+	//console.log(this.letters);
 }
 // An array of new Letter objects representing the letters of the underlying 
 //word
@@ -63,13 +63,13 @@ Word.prototype.getUserArray=function()
 	for(var x=0; x<this.secretWord.length; x++)
 	{
 
-		console.log(this.letters[x].isGuessed);
+		//console.log(this.letters[x].isGuessed);
 		//creating the secret word into an array to compare to user's char guess
 		if(this.letters[x].isGuessed)
-		{	console.log("change from: "+typeof(this.userWord[x]))
-			console.log("when true return: "+typeof(this.letters[x].returnGuess()));
+		{	//console.log("change from: "+typeof(this.userWord[x]))
+			//console.log("when true return: "+typeof(this.letters[x].returnGuess()));
 			this.userArray[x]=this.letters[x].returnGuess();
-			console.log(this.userArray[x]);
+			//console.log(this.userArray[x]);
 		
 		}
 
@@ -77,15 +77,12 @@ Word.prototype.getUserArray=function()
 		//this.letters.push(new Letter(this.secretWord[x]));
 	}
 	//this.secretWord=this.secretWord.join("");
-	console.log(this.letters);
+	//console.log(this.letters);
 	//console.log(this.userWord);
 	return this.userArray.join("");
 };
 
-Word.prototype.display=function()
-{
-	console.log("hello");
-};
+
 
 module.exports = Word;
 /*
