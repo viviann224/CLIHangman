@@ -1,7 +1,10 @@
+//import Word constructor
 var Word = require("./Word.js");
+//getting the inquirer package for user input
 var inquirer = require('inquirer');
 //wordbank for secret word
 var WordBank = {
+	//list of words to use every new iteration
 	list:["english bulldog", "wrinkles", "stubby", "drool", "stubborn", "goofy"],
 	//images for every point lost
 	picture: ["\n\n\n\n\n\n\n------","\n\n\n\n\n\n\n-------------", "\n |\n |\n |\n |\n |\n |\n |\n-------------", "____________\n |         |\n |\n |\n |\n |\n |\n-------------","____________\n |         |\n |         O\n |\n |\n |\n |\n |\n-------------","____________\n |         |\n |         O\n |         |\n |         |\n |\n |\n |\n-------------","____________\n |         |\n |         O\n |         |\n |         |\n |        ---\n |\n |\n-------------", "____________\n |         |\n |         O\n |       __|\n |         |\n |        ---\n |\n |\n-------------", "____________\n |         |\n |         O\n |       __|__\n |         |\n |        ---\n |\n |\n-------------", "____________\n |         |\n |         O\n |       __|__\n |         |\n |        ---\n |        |\n |\n-------------","____________\n |         |\n |         O\n |       __|__\n |         |\n |        ---\n |        | |\n |\n-------------"]
@@ -10,14 +13,20 @@ var WordBank = {
 
 var Game=
 {
-userGuessArray:[],
-isSame:false,
-guessLeft:10,
-secret:"",
-myWord:null,
-changed:false,
-gameOver:false,
-picture:0,
+	//variable for user array
+	userGuessArray:[],
+	//checks if userArray and secret word a the same
+	isSame:false,
+	//total amt of guesses
+	guessLeft:10,
+	//secret string variable
+	secret:"",
+	//variable for Word object
+	myWord:null,
+	//bool logic to see if userArray is changed
+	changed:false,
+	//test to see if game is over
+	gameOver:false,
 start:function()
 {
 	console.log("\n********************************************************************");

@@ -7,7 +7,9 @@ var Word = function(secretWord)
 	// this.letters will hold all of our Letter objects
 	this.letters=[];
 	this.userWord="";
+	//creating array for the secret word as the main reference
 	this.secretWord= secretWord.split("");
+	//creating a user array for user to use
 	this.userArray=[];
 };
 
@@ -37,11 +39,7 @@ Word.prototype.createArray = function()
 		}
 		//creating the object array of letter based on the secret letter
 		this.letters.push(new Letter(this.secretWord[x]));
-
 	}
-	//console.log(this.secretWord);
-	//console.log("blank userword: "+this.userWord);
-	//console.log(this.letters);
 }
 
 //checkLetter functions passes myChar
@@ -53,73 +51,21 @@ Word.prototype.checkLetter=function(myChar)
 	{
 		this.letters[x].checkGuess(myChar,this.secretWord[x])
 	}
-	//console.log(this.letters);
 }
 // An array of new Letter objects representing the letters of the underlying 
 //word
 Word.prototype.getUserArray=function()
 {
-	//console.log("secret word passed to blank: "+this.secretWord[]);
 	for(var x=0; x<this.secretWord.length; x++)
 	{
-
-		//console.log(this.letters[x].isGuessed);
 		//creating the secret word into an array to compare to user's char guess
 		if(this.letters[x].isGuessed)
-		{	//console.log("change from: "+typeof(this.userWord[x]))
-			//console.log("when true return: "+typeof(this.letters[x].returnGuess()));
+		{	
 			this.userArray[x]=this.letters[x].returnGuess();
-			//console.log(this.userArray[x]);
-		
 		}
-
-		
-		//this.letters.push(new Letter(this.secretWord[x]));
 	}
-	//this.secretWord=this.secretWord.join("");
-	//console.log(this.letters);
-	//console.log(this.userWord);
+	//displays the user array and beautifying the format
 	return this.userArray.join("");
 };
-
-
-
+//export Word to index.js
 module.exports = Word;
-/*
-Word.prototype.checkStatus =function(myChar)
-{
-	console.log("inside checkStatus");
-	//console.log(this.letters);
-	console.log(myChar);
-	console.log(this.letters[0].displayChar());
-	console.log(this.letters[0].checkChar(myChar, "kitty-kat"));
-	console.log(this.letters[0].returnGuess());
-
-};
-*/
-// A function that returns a string representing the word. This should call 
-//the function on each letter object (the first function defined in Letter.js) 
-//that displays the character or an underscore and concatenate those together.
-
-// A function that takes a character as an argument and calls the guess 
-//function on each letter object (the second function defined in Letter.js)
-/*console.log("START GAME: ");
-var myWord = new Word("kitty kat");
-//console.log(myWord.secretArray());
-//myWord.checkStatus("a");
-myWord.createArray();
-myWord.checkLetter("a");
-console.log(myWord.getUserArray());
-myWord.checkLetter("k");
-console.log(myWord.getUserArray());
-myWord.checkLetter("t");
-console.log(myWord.getUserArray());
-myWord.checkLetter("i");
-console.log(myWord.getUserArray());
-myWord.checkLetter("y");
-console.log(myWord.getUserArray());
-*/
-
-
-
-
