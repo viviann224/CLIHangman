@@ -10,7 +10,7 @@ var WordBank = {
 	picture: ["\n\n\n\n\n\n\n------","\n\n\n\n\n\n\n-------------", "\n |\n |\n |\n |\n |\n |\n |\n-------------", "____________\n |         |\n |\n |\n |\n |\n |\n-------------","____________\n |         |\n |         O\n |\n |\n |\n |\n |\n-------------","____________\n |         |\n |         O\n |         |\n |         |\n |\n |\n |\n-------------","____________\n |         |\n |         O\n |         |\n |         |\n |        ---\n |\n |\n-------------", "____________\n |         |\n |         O\n |       __|\n |         |\n |        ---\n |\n |\n-------------", "____________\n |         |\n |         O\n |       __|__\n |         |\n |        ---\n |\n |\n-------------", "____________\n |         |\n |         O\n |       __|__\n |         |\n |        ---\n |        |\n |\n-------------","____________\n |         |\n |         O\n |       __|__\n |         |\n |        ---\n |        | |\n |\n-------------"]
 
 };
-
+//game class to store the logic of the hangman game
 var Game=
 {
 	//variable for user array
@@ -27,8 +27,16 @@ var Game=
 	changed:false,
 	//test to see if game is over
 	gameOver:false,
+
+//start function starts the game, calls for user input and displays
+//results of user guess
+//if guess right, display updated concationation of the the secret word 
+//and continues asking for another guess until the user runs out of guesses or reveals the secret word.
+//if wrong lose a guess and the updated hangman graphic appears. 
+//if the user runs out of guesses, the game end
 start:function()
 {
+	//welcome display
 	console.log("\n********************************************************************");
 	console.log("********************************************************************");
 	console.log("**                   Welcome to Hangman!                          **");
@@ -49,11 +57,6 @@ start:function()
 	console.log(Game.myWord.userArray.join("")+"\n");
 	//ask for user input with user validation
 	Game.userInput();
-},
-
-checkUserBank:function(userChar)
-{
-	console.log(this.userChar);
 },
 
 userInput:function()
@@ -115,9 +118,11 @@ userInput:function()
     			//wrong user loses a turn
     			Game.guessLeft--;
     		}
+    		//displays status of the game at each turn
     		console.log("===================");
     		console.log("====  HANGMAN   ===");
     		console.log("===================");
+    		//display hangman graphics
     		console.log(WordBank.picture[10-Game.guessLeft]);
     		console.log("===================");
     		console.log("===================");
@@ -135,23 +140,25 @@ userInput:function()
     		{
     			//reset changed to true
     			Game.changed=true;
-    			//console.log("secretword: "+(Game.myWord.secretWord[x]));
-    			//console.log("user array: "+(Game.myWord.userArray[x]));
     			//if the user array is not the same with the secret word, are not done play
     			if(Game.myWord.secretWord[x]!=Game.myWord.userArray[x])
     			{	Game.changed=false;}
     		}
-    		//console.log("changed?: "+Game.changed);
+    		//if the game is not over
     		if(Game.guessLeft>0 && !Game.changed)
     		{
-    			//console.log("switched status: "+Game.myWord.switched);
+    			//update to the next graphic 
     			Game.picture++;
+    			//and ask for another guess
     			Game.userInput();
     		}
+    		//if you run out of guesses display that you ran out of guess
+    		//and game is done
     		else if(Game.guessLeft==0)
     		{
     			console.log("\nI AM SORRY YOU RAN OUT OF GUESSES \nANSWER: "+Game.myWord.secretWord.join("")+"\n");
     		}
+    		//if the user guess and the secret word matches, you win!!!!
     		else if(Game.changed)
     		{
     			console.log("********************************************************************");
@@ -163,18 +170,18 @@ userInput:function()
     	
     		}
     	}
+    	
     	//ran out of time still trying to trouble shoot if the user already has the same
-    	//letter in the user
+    	//wrong letter guess display that  you already guessed and go ahead and guess again
     	else if(Game.isSame)
     	{	
     		console.log("\nYou already guessed that!\nPlease TRY AGAIN!!!\n");
     		this.userInput();
 		}
-		//console.log("sameword: "+Game.isSame)
     });
 
   },
-
+//when the game is done ask the user if they want to restart
   restart: function()
   {
   	inquirer.prompt([{
@@ -190,18 +197,6 @@ userInput:function()
     })
   },
 
-checkGuess:function(userChar, secretWord, guessLeft)
-{
-	if(!secretWord.includes(userChar))
-	{
-		guessLeft--;
-		
-	}
-	return guessLeft;
-},
-
 }
-
+//call to start the hangman game
 Game.start();
-//Game.restart();
-
