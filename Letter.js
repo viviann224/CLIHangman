@@ -4,7 +4,6 @@ var Letter = function(userChar)
 {
 	this.userChar=userChar;
 	this.isGuessed=false;
-	//console.log("Letter constructor created");
 };
 //returnGuess function checks if isGuessed is true, return the userChar
 //else return "-"
@@ -29,12 +28,10 @@ Letter.prototype.checkGuess= function(myChar, secretWord)
 	if(secretWord.includes(myChar))
 	{
 		this.isGuessed=true;
-		//return true
 	}
 	else
 	{
 		this.isGuessed=false;
-		//return false;
 	}
 };
 
@@ -46,10 +43,5 @@ Letter.prototype.displayChar =function()
 	console.log("userChar: "+ this.userChar);
 	console.log("Guesses: "+ this.isGuessed);
 };
-/*
-var myLetter = new Letter("a",false); 
-//console.log(myLetter.checkWord());
-myLetter.displayChar();
-console.log(myLetter.checkChar("1", "apple"));
-*/
+//export Letter to Words.js
 module.exports =Letter;
